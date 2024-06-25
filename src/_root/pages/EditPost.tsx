@@ -6,9 +6,9 @@ import { useParams } from "react-router-dom"
 const EditPost = () => {
 
   const { id } = useParams();
-  const { data: post, isLoading} = useGetPostById(id);
+  const { data: post, isPending} = useGetPostById(id);
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <div className="flex-center w-full h-full">
         <Loader />
@@ -29,7 +29,7 @@ const EditPost = () => {
           />
           <h2 className="h3-bold md:h2-bold text-left w-full">Edit Post</h2>
         </div>
-        {isLoading ? <Loader /> : <PostForm action="Update" post={post} />}
+        {isPending ? <Loader /> : <PostForm action="Update" post={post} />}
       </div>
     </div>
   )

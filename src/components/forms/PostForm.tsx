@@ -42,8 +42,8 @@ const PostForm = ({ post, action } : PostFormProps) => {
         },
     });
 
-    const { mutateAsync: createPost, isLoading: isLoadingCreate } = useCreatePost();
-    const { mutateAsync: updatePost, isLoading: isLoadingUpdate } = useUpdatePost();
+    const { mutateAsync: createPost, isPending: isPendingCreate } = useCreatePost();
+    const { mutateAsync: updatePost, isPending: isPendingUpdate } = useUpdatePost();
 
 
     const handleSubmit = async (values: z.infer<typeof PostValidation>) => {
@@ -156,9 +156,9 @@ const PostForm = ({ post, action } : PostFormProps) => {
                     <Button
                         type="submit"
                         className="shad-button_primary whitespace-nowrap"
-                        disabled={isLoadingCreate || isLoadingUpdate}
+                        disabled={isPendingCreate || isPendingUpdate}
                         >
-                            {(isLoadingCreate || isLoadingUpdate) && <Loader />}
+                            {(isPendingCreate || isPendingUpdate) && <Loader />}
                             {action} Post
                     </Button>
                 </div>

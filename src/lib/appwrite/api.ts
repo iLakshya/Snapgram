@@ -166,7 +166,7 @@ export function getFilePreview(fileId: string) {
             fileId,
             2000,
             2000,
-            "top",
+            undefined,
             100
         );
         if (!fileUrl) throw Error;
@@ -339,7 +339,7 @@ export async function deletePost(postId?: string, imageId?: string) {
 // Infinite Posts
 export async function getInfinitePosts({ pageParam } : { pageParam: number }) {
     const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
-
+    
     if (pageParam) {
         queries.push(Query.cursorAfter(pageParam.toString()))
     }

@@ -13,8 +13,8 @@ const PostDetails = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
 
-  const { data: post, isLoading} = useGetPostById(id);
-  const { data: userPosts, isLoading: isUserPostLoading } = useGetUserPosts()
+  const { data: post, isPending} = useGetPostById(id);
+  const { data: userPosts, isPending: isUserPostLoading } = useGetUserPosts()
   const { mutate: deletePost } = useDeletePost();
 
   const relatedPosts = userPosts?.documents.filter(
@@ -42,7 +42,7 @@ const PostDetails = () => {
             <p className="small-medium lg:base-medium">Back</p>
         </Button>
       </div>
-      {isLoading || !post ? (
+      {isPending || !post ? (
         <Loader />
       ) : (
         <div className="post_details-card">

@@ -13,7 +13,7 @@ const LeftSidebar = () => {
 
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const { user, setUser, setIsAuthenticated, isLoading } = useUserContext();
+    const { user, setUser, setIsAuthenticated, isPending } = useUserContext();
 
     const { mutate: signOut } = useSignOutAccount();
 
@@ -39,7 +39,7 @@ return (
                 />
             </Link>
 
-            {isLoading || !user.email ? (
+            {isPending || !user.email ? (
                 <div className="h-14">
                     <Loader />
                 </div>
