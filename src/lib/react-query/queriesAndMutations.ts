@@ -158,8 +158,9 @@ export const useGetPosts = () => {
             const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
             return lastId;
         },
-    });
-};
+        initialPageParam: null,
+    }
+)};
 
 export const useSearchPosts = (searchTerm: string) => {
     return useQuery({
