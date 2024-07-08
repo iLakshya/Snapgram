@@ -337,8 +337,31 @@ export async function deletePost(postId?: string, imageId?: string) {
 }
 
 // Infinite Posts
+// export async function getInfinitePosts({ pageParam } : { pageParam: number }) {
+//     const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+    
+//     if (pageParam) {
+//         queries.push(Query.cursorAfter(pageParam.toString()))
+//     }
+
+//     try {
+//         const posts = await databases.listDocuments(
+//             appwriteConfig.databaseId,
+//             appwriteConfig.postCollectionId,
+//             queries
+//         );
+
+//         if (!posts) throw Error;
+
+//         return posts;
+//     }
+//     catch (error) {
+//         console.log(error)
+//     }
+// }
+
 export async function getInfinitePosts({ pageParam } : { pageParam: number }) {
-    const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+    const queries: string[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
     
     if (pageParam) {
         queries.push(Query.cursorAfter(pageParam.toString()))
@@ -379,8 +402,30 @@ export async function searchPosts(searchTerm: string) {
 }
 
 // Get Users
+// export async function getUsers(limit?: number) {
+//     const queries: any[] = [Query.orderDesc("$createdAt")];
+
+//     if(limit) {
+//         queries.push(Query.limit(limit))
+//     }
+//     try {
+//         const users = await databases.listDocuments(
+//             appwriteConfig.databaseId,
+//             appwriteConfig.userCollectionId,
+//             queries
+//         );
+//         if (!users) throw Error;
+
+//         return users;
+//     }
+//     catch (error) {
+//         console.log(error);
+//     }
+// }
+
+
 export async function getUsers(limit?: number) {
-    const queries: any[] = [Query.orderDesc("$createdAt")];
+    const queries: string[] = [Query.orderDesc("$createdAt")];
 
     if(limit) {
         queries.push(Query.limit(limit))
@@ -399,6 +444,8 @@ export async function getUsers(limit?: number) {
         console.log(error);
     }
 }
+
+
 
 // Update User
 export async function updateUser(user: IUpdateUser) {
